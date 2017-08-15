@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/jsp/common/">
+
+    <!-- 默认装饰页面, 在需要装饰的页面增加<meta name="decorator" content="default"/> -->
+    <decorator name="default" page="default.jsp">
+        <!-- 所有请求都用deault.jsp页面 -->
+        <pattern>/*</pattern>
+    </decorator>
+
+</decorators>
