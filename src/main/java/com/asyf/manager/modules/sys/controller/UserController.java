@@ -44,6 +44,11 @@ public class UserController {
         return "modules/sys/sysIndex";
     }
 
+    @RequestMapping(value = "list")
+    public String list() {
+        
+        return "userList";
+    }
 
 
 }
