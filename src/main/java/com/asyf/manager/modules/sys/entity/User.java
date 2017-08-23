@@ -1,8 +1,12 @@
 package com.asyf.manager.modules.sys.entity;
 
-import java.util.Date;
+import com.asyf.manager.common.entity.Page;
 
-public class User {
+import java.util.Date;
+import java.util.List;
+
+public class User extends Page<User> {
+
     private String id;
 
     private String companyId;
@@ -44,6 +48,7 @@ public class User {
     private String remarks;
 
     private String delFlag;
+
 
     public String getId() {
         return id;

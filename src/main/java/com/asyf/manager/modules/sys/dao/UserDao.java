@@ -3,6 +3,8 @@ package com.asyf.manager.modules.sys.dao;
 import com.asyf.manager.common.annotation.MyBatisDao;
 import com.asyf.manager.modules.sys.entity.User;
 
+import java.util.List;
+
 @MyBatisDao
 public interface UserDao {
     int deleteByPrimaryKey(String id);
@@ -16,4 +18,8 @@ public interface UserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> findAllList(User user);
+
+    int countUser(User user);
 }

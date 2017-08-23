@@ -6,6 +6,8 @@ import com.asyf.manager.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,5 +17,13 @@ public class UserServiceImpl implements UserService {
 
     public User selectByPrimaryKey(String id) {
         return userDao.selectByPrimaryKey(id);
+    }
+
+    public List<User> findAllList(User user) {
+        return userDao.findAllList(user);
+    }
+
+    public int countUser(User user) {
+        return userDao.countUser(user);
     }
 }
