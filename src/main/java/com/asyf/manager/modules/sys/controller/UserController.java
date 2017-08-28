@@ -44,6 +44,8 @@ public class UserController {
         // 日志配置设置
         //logger.info("日志记录测试" + user.getName());
         //model.addAttribute("user", user);
+        //String a = null;
+        //System.err.print(a.toString());
         return "modules/sys/sysIndex";
     }
 
@@ -61,7 +63,6 @@ public class UserController {
         page.setRows(list);
         int total = userService.countUser(user);
         page.setTotal(String.valueOf(total));
-
         return page;
     }
 

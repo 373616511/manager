@@ -8,7 +8,25 @@ public class Page<T> {
     private String total;
     private String limit;
     private String offset;
+    private String order;
+    private String sort;
     private List<T> rows;
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
 
     public String getTotal() {
         return total;

@@ -33,26 +33,29 @@
     <select id="countUser" resultType="int" parameterType="com.asyf.manager.modules.sys.entity.User">
         SELECT count(1) from sys_user
         <where>
-            <if test="name != null and name !=''" >
-                AND `name` LIKE  CONCAT('%',#{name},'%')
+            <if test="name != null and name !=''">
+                AND `name` LIKE CONCAT('%',#{name},'%')
             </if>
             <if test="loginName != null and loginName !=''">
-                AND login_name LIKE  CONCAT('%',#{loginName},'%')
+                AND login_name LIKE CONCAT('%',#{loginName},'%')
             </if>
         </where>
     </select>
 
     <select id="findAllList" resultMap="BaseResultMap" parameterType="com.asyf.manager.modules.sys.entity.User">
-    SELECT *  FROM sys_user
-    <where>
-        <if test="name != null and name !=''">
-            AND `name` LIKE  CONCAT('%',#{name},'%')
+        SELECT * FROM sys_user
+        <where>
+            <if test="name != null and name !=''">
+                AND `name` LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="loginName != null and loginName !=''">
+                AND login_name LIKE CONCAT('%',#{loginName},'%')
+            </if>
+        </where>
+        <if test="sort != null and sort != ''">
+            order by ${sort} ${order}
         </if>
-        <if test="loginName != null and loginName !=''">
-            AND login_name LIKE  CONCAT('%',#{loginName},'%')
-        </if>
-    </where>
-    limit ${offset},${limit}
+        limit ${offset},${limit}
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
