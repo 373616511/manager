@@ -19,7 +19,7 @@ public interface UserDao {
 
     int updateByPrimaryKey(User record);
 
-    List<User> findAllList(User user);
+    List<User> findUserList(User user);
 
     int countUser(User user);
 }

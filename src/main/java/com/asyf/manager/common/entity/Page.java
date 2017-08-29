@@ -2,6 +2,8 @@ package com.asyf.manager.common.entity;
 
 import org.apache.poi.ss.formula.functions.T;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page<T> {
@@ -10,7 +12,19 @@ public class Page<T> {
     private String offset;
     private String order;
     private String sort;
-    private List<T> rows;
+    private List<T> rows = new ArrayList<T>();
+
+    public Page() {
+    }
+
+    public Page(HttpServletRequest request) {
+        limit = (String) request.getParameter("limit");
+        offset = (String) request.getParameter("offset");
+        sort = (String) request.getParameter("sort");
+        order = (String) request.getParameter("order");
+    }
+
+    ;
 
     public String getOrder() {
         return order;
@@ -59,4 +73,5 @@ public class Page<T> {
     public void setRows(List<T> rows) {
         this.rows = rows;
     }
+
 }

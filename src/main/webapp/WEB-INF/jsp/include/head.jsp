@@ -5,7 +5,7 @@
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-store">
 
-<link type="text/css" rel="stylesheet" href="${ctxStatic}/bootstrap-3.3.7/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="${ctxStatic}/bootstrap-3.3.7/css/bootstrap-cerulean.css">
 <link type="text/css" rel="stylesheet" href="${ctxStatic}/bootstrap-table/css/bootstrap-table.min.css">
 
 <script type="text/javascript" src="${ctxStatic}/jquery/jquery-2.0.3.min.js"></script>

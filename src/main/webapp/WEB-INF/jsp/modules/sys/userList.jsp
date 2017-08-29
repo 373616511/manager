@@ -15,31 +15,59 @@
         <li><a href="#ios" data-toggle="tab">用户新增</a></li>
     </ul>
     <br>
-    <form id="searchForm" class="form-inline">
-
+    <form id="searchForm" class="form-inline" onsubmit="return search()">
         <div class="form-group">
             <label class="control-label">姓名：</label>
-            <input type="text" name="name" value="" class="form-control">
+            <input type="text" id="name" name="name" value="" class="form-control">
         </div>&nbsp;&nbsp;
         <div class="form-group">
             <label class="control-label">用户名：</label>
-            <input type="text" name="loginName" value="" class="form-control">
+            <input type="text" id="loginName" name="loginName" value="" class="form-control">
         </div>&nbsp;&nbsp;
-        <input class="btn btn-primary btn-search" type="button" value="查询"/>
+        <input class="btn btn-primary btn-search" type="submit" value="查询"/>
+        <input id="reSet" class="btn btn-primary btn-search" type="button" value="重置"/>
     </form>
     <table id="test-table" class="col-xs-12" data-toolbar="#toolbar"></table>
 </div>
 <script type="text/javascript">
     $(function () {
         initTable();
-        $(".btn-search").click(function () {
-            //alert("ok");
-            $('#test-table').bootstrapTable('refreshOptions', {pageNumber: 1});
-            $('#test-table').bootstrapTable('refresh', {
-                silent: true
-            });
+        $("#reSet").click(function () {
+            /*
+            reload 方法，该方法强迫浏览器刷新当前页面。
+            语法：location.reload([bForceGet])参数： bForceGet， 可选参数， 默认为 false，
+            从客户端缓存里取当前页。 true, 则以GET 方式，从服务端取最新的页面, 相当于客户端点击 F5("刷新")
+             */
+            window.location.reload(true);
         });
     });
+
+    function search() {
+        //alert("ok");
+        $('#test-table').bootstrapTable('refreshOptions', {pageNumber: 1});
+        $('#test-table').bootstrapTable('refresh', {
+            silent: true
+        });
+        return false;
+    }
+
+    function queryParams(params) {
+        //$('#test-table').bootstrapTable('refreshOptions', {pageNumber: 1});
+        var p = {
+            limit: params.limit,
+            offset: params.offset,
+            sort: params.sort,
+            order: params.order
+        };
+        if ($("input[name='name']").val() != '') {
+            p.name = $("input[name='name']").val();
+        }
+        if ($("input[name='loginName']").val() != '') {
+            p.loginName = $("input[name='loginName']").val();
+        }
+        //alert("init");
+        return p;
+    }
 
     function initTable() {
         $('#test-table').bootstrapTable({
@@ -109,27 +137,9 @@
                     }
                 }],
             onSort: function (a, b) {
-                alert(a + "--" + b);
-
+                //alert(a + "--" + b);
             }
         });
-    }
-
-    function queryParams(params) {
-        var p = {
-            limit: params.limit,
-            offset: params.offset,
-            sort: params.sort,
-            order: params.order
-        };
-
-        if ($("input[name='name']").val() != '') {
-            p.name = $("input[name='name']").val();
-        }
-        if ($("input[name='loginName']").val() != '') {
-            p.loginName = $("input[name='loginName']").val();
-        }
-        return p;
     }
 
 </script>

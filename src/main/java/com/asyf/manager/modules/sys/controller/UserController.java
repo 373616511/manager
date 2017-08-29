@@ -5,7 +5,6 @@ import com.asyf.manager.modules.sys.entity.User;
 import com.asyf.manager.modules.sys.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,10 +57,8 @@ public class UserController {
     @ResponseBody
     public Page<User> getAllUser(User user, String searchText, HttpServletRequest request,
                                  HttpServletResponse response) {
-        List<User> list = userService.findAllList(user);
-        Page<User> page = new Page<User>();
-        page.setRows(list);
-        int total = userService.countUser(user);
+        Page<User> page = userService.findAllList(new Page<User>(request), user);
+        int total = userService.countUser(new Page<User>(request), user);
         page.setTotal(String.valueOf(total));
         return page;
     }
