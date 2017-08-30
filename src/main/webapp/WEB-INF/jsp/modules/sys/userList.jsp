@@ -137,6 +137,8 @@
                     }
                 }],
             onSort: function (a, b) {
+                //修改为首页
+                $('#test-table').bootstrapTable('refreshOptions', {pageNumber: 1});
                 //alert(a + "--" + b);
             }
         });
