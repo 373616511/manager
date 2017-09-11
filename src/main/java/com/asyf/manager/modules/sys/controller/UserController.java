@@ -63,5 +63,9 @@ public class UserController {
         return page;
     }
 
+    @RequestMapping(value = "add")
+    public String add() {
+        return "modules/sys/userAdd";
+    }
 
 }

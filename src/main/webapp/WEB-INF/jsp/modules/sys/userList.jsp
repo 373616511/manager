@@ -8,11 +8,11 @@
 <div class="container-fluid">
     <ul id="myTab" class="nav nav-tabs">
         <li class="active">
-            <a href="#home" data-toggle="tab">
+            <a href="javascript:void(0)">
                 用户列表
             </a>
         </li>
-        <li><a href="#ios" data-toggle="tab">用户新增</a></li>
+        <li><a href="${ctx}/user/add">用户新增</a></li>
     </ul>
     <br>
     <form id="searchForm" class="form-inline" onsubmit="return search()">
@@ -52,7 +52,6 @@
     }
 
     function queryParams(params) {
-        //$('#test-table').bootstrapTable('refreshOptions', {pageNumber: 1});
         var p = {
             limit: params.limit,
             offset: params.offset,
@@ -65,7 +64,6 @@
         if ($("input[name='loginName']").val() != '') {
             p.loginName = $("input[name='loginName']").val();
         }
-        //alert("init");
         return p;
     }
 
