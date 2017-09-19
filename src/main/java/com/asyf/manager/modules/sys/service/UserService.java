@@ -12,4 +12,6 @@ public interface UserService {
     Page<User> findAllList(Page<User> page, User user);
 
     int countUser(Page<User> page, User user);
+
+    void test(long l);
 }

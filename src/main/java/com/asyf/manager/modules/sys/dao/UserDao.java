@@ -22,4 +22,6 @@ public interface UserDao {
     List<User> findUserList(User user);
 
     int countUser(User user);
+
+    void test();
 }

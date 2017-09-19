@@ -68,4 +68,11 @@ public class UserController {
         return "modules/sys/userAdd";
     }
 
+    @RequestMapping(value = "/test")
+    @ResponseBody
+    public String test() {
+        long l = System.currentTimeMillis();
+        userService.test(l);
+        return null;
+    }
 }

@@ -27,16 +27,25 @@
         <input class="btn btn-primary btn-search" type="submit" value="查询"/>
         <input id="reSet" class="btn btn-primary btn-search" type="button" value="重置"/>
     </form>
+    <input id="test" class="btn btn-primary btn-search" type="button" value="事务测试"/>
     <table id="test-table" class="col-xs-12" data-toolbar="#toolbar"></table>
 </div>
 <script type="text/javascript">
     $(function () {
+        $("#test").click(function () {
+            var url = ctx + "/user/test";
+            //alert(url);
+            $.ajax({
+                type: 'POST',
+                url: url
+            });
+        });
         initTable();
         $("#reSet").click(function () {
             /*
-            reload 方法，该方法强迫浏览器刷新当前页面。
-            语法：location.reload([bForceGet])参数： bForceGet， 可选参数， 默认为 false，
-            从客户端缓存里取当前页。 true, 则以GET 方式，从服务端取最新的页面, 相当于客户端点击 F5("刷新")
+             reload 方法，该方法强迫浏览器刷新当前页面。
+             语法：location.reload([bForceGet])参数： bForceGet， 可选参数， 默认为 false，
+             从客户端缓存里取当前页。 true, 则以GET 方式，从服务端取最新的页面, 相当于客户端点击 F5("刷新")
              */
             window.location.reload(true);
         });

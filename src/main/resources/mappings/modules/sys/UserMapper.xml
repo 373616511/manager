@@ -16,6 +16,10 @@
     <sql id="Base_Column_List">
     id, loginName, password, name, email, phone, createDate, updateDate, status, delFlag
   </sql>
+
+    <update id="test">
+        UPDATE user SET name = 'test' where id = 1
+    </update>
     <!-- findUserList -->
     <select id="findUserList" parameterType="page" resultMap="BaseResultMap">
         SELECT * FROM user
