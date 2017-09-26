@@ -13,5 +13,5 @@ public interface UserService {
 
     int countUser(Page<User> page, User user);
 
-    void test(long l);
+    String test(long l);
 }

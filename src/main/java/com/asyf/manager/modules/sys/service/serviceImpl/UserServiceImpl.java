@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -30,13 +31,20 @@ public class UserServiceImpl implements UserService {
         return userDao.countUser(user);
     }
 
+    @synchronized
     @Transactional(readOnly = false)
-    public void test(long l) {
+    public String test(long l) {
         System.err.println(l);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             String name = Thread.currentThread().getName();
             System.err.println(name + "===" + i);
         }
-        userDao.test();
+        //userDao.test();
+        return null;
     }
 }
