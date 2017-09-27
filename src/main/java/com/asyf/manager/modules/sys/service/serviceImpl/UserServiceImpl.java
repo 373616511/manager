@@ -7,7 +7,7 @@ import com.asyf.manager.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import groovy.transform.Synchronized;
 
 @Service
 @Transactional(readOnly = true)
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         return userDao.countUser(user);
     }
 
-    @synchronized
+    @Synchronized
     @Transactional(readOnly = false)
     public String test(long l) {
         System.err.println(l);
