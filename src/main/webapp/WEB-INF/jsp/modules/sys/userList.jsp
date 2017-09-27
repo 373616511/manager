@@ -39,6 +39,14 @@
                 type: 'POST',
                 url: url
             });
+            $.ajax({
+                type: 'POST',
+                url: url
+            });
+            $.ajax({
+                type: 'POST',
+                url: url
+            });
         });
         initTable();
         $("#reSet").click(function () {

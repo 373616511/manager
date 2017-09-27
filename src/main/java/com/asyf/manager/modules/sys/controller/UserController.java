@@ -71,10 +71,10 @@ public class UserController {
     @RequestMapping(value = "/test")
     @ResponseBody
     public String test() {
-       // synchronized (this) {
+        //synchronized (this) {
             long l = System.currentTimeMillis();
             userService.test(l);
-       // }
+        //}
         return null;
     }
 }

@@ -35,16 +35,20 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = false)
     public String test(long l) {
         System.err.println(l);
-        for (int i = 0; i < 10; i++) {
-            try {
+        //for (int i = 0; i < 10; i++) {
+            /*try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-            String name = Thread.currentThread().getName();
-            System.err.println(name + "===" + i);
-        }
-        //userDao.test();
+            }*/
+        String name = Thread.currentThread().getName();
+
+        //}
+        String b = userDao.get();
+        userDao.test(name);
+        System.err.println(name + "----" + b);
+        String a = null;
+        //System.err.print(a.toString());
         return null;
     }
 }

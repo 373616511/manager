@@ -17,9 +17,14 @@
     id, loginName, password, name, email, phone, createDate, updateDate, status, delFlag
   </sql>
 
-    <update id="test">
-        UPDATE user SET name = 'test' where id = 1
+    <update id="test" parameterType="String">
+        UPDATE user SET name = #{_parameter} where id = 1
     </update>
+
+    <select id="get" resultType="String">
+        SELECT name from user where id = 1
+    </select>
+
     <!-- findUserList -->
     <select id="findUserList" parameterType="page" resultMap="BaseResultMap">
         SELECT * FROM user

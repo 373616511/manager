@@ -23,5 +23,7 @@ public interface UserDao {
 
     int countUser(User user);
 
-    void test();
+    void test(String name);
+
+    String get();
 }
