@@ -1,5 +1,6 @@
 package com.asyf.manager.modules.sys.entity;
 
+import com.asyf.manager.common.annotation.ExcelField;
 import com.asyf.manager.common.entity.DataEntity;
 import com.asyf.manager.common.entity.Page;
 
@@ -19,6 +20,7 @@ public class User extends DataEntity<User> {
 
     private String status;
 
+
     public String getLoginName() {
         return loginName;
     }
@@ -34,7 +36,7 @@ public class User extends DataEntity<User> {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @ExcelField(value = "姓名")
     public String getName() {
         return name;
     }
