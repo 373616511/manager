@@ -190,15 +190,6 @@
         </dependency>
         <!-- 定时任务 end -->
 
-        <!-- poi start -->
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.16</version>
-        </dependency>
-        <!-- poi end -->
-
         <!-- redis start -->
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -218,17 +209,33 @@
             <artifactId>sitemesh</artifactId>
             <version>2.4.2</version>
         </dependency>
+        <!-- sitemesh end -->
+
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.4.3</version>
         </dependency>
+
+
+        <!-- poi start -->
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.12</version>
+            <version>3.16</version>
         </dependency>
-        <!-- sitemesh end -->
+
+
+        <!-- poi end -->
+
 
     </dependencies>
     <build>
@@ -241,6 +248,14 @@
                 <configuration>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>

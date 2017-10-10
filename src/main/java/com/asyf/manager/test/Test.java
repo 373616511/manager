@@ -1,10 +1,10 @@
 package com.asyf.manager.test;
 
-import org.apache.poi.xssf.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.Font;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 import java.util.Calendar;
@@ -24,6 +24,8 @@ public class Test {
             "September","October", "November", "December"};
 
     public static void main(String[] args) throws Exception {
+
+        System.out.println(HSSFWorkbook.class.getProtectionDomain().getCodeSource().getLocation());
 
         Calendar calendar = Calendar.getInstance();
         boolean xlsx = true;
@@ -111,7 +113,7 @@ public class Test {
             }
 
             // Write the output to a file
-            String file = "calendar.xls";
+            String file = "E:/calendar.xls";
             if (wb instanceof XSSFWorkbook) file += "x";
 
             try (FileOutputStream out = new FileOutputStream(file)) {
@@ -124,7 +126,7 @@ public class Test {
      * cell styles used for formatting calendar sheets
      */
     private static Map<String, CellStyle> createStyles(Workbook wb){
-        Map<String, CellStyle> styles = new HashMap<>();
+        Map<String, CellStyle> styles = new HashMap();
 
         short borderColor = IndexedColors.GREY_50_PERCENT.getIndex();
 
