@@ -19,38 +19,18 @@ import java.util.Locale;
 /**
  * Created by Administrator on 2017/9/28.
  */
-public class ExcelUtils {
+public class ExcelExport {
 
-    /**
-     * 获取注解的列名，遍历数据，每一条的数据通过反射调用注解的getter获得每列的数据，存储到cell
-     *
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        System.err.println("poi_test-----------------------------");
-        User user = new User();
-        user.setId("s");
-        user.setName("name");
-        List<User> list = new ArrayList<User>();
-        ExportExcel(list);
-        Method[] declaredMethods = user.getClass().getDeclaredMethods();
-        for (Method m : declaredMethods) {
-            //System.err.println(m.getName());
-            ExcelField ef = m.getAnnotation(ExcelField.class);
-            System.err.println(ef);
-            if (ef != null) {
-                System.err.println(ef.value());
-                if (m.getName().contains("get")) {
-                    Object obj = m.invoke(user);
-                    System.err.println("obj=" + obj);
-                }
-            }
+    //private List<>
+    //构造函数--获得注解的方法和注解
+    public ExcelExport(Class cls) {
+        Method[] methods = cls.getDeclaredMethods();
+        for (Method m : methods) {
+            System.err.println(m.getName());
         }
-        System.err.println("poi_test-----------------------------");
     }
 
-    public static void ExportExcel(List<User> list) {
+    public void exportExcel(List<User> list) {
         // 第一步，创建一个webbook，对应一个Excel文件
         HSSFWorkbook wb = new HSSFWorkbook();
         // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
@@ -67,8 +47,6 @@ public class ExcelUtils {
         cell = row.createCell((short) 1);
         cell.setCellValue("姓名");
         cell.setCellStyle(style);
-
-
         // 第五步，写入实体数据 实际应用中这些数据从数据库得到，
 
         for (int i = 0; i < list.size(); i++) {
@@ -90,5 +68,22 @@ public class ExcelUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取注解的列名，遍历数据，每一条的数据通过反射调用注解的getter获得每列的数据，存储到cell
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        System.err.println("poi_test-----------------------------");
+        User user = new User();
+        user.setId("s");
+        user.setName("name");
+        List<User> list = new ArrayList<User>();
+        ExcelExport excelExport = new ExcelExport(User.class);
+
+        System.err.println("poi_test-----------------------------");
     }
 }

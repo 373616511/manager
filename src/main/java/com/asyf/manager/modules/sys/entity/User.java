@@ -45,6 +45,7 @@ public class User extends DataEntity<User> {
         this.name = name;
     }
 
+    @ExcelField(value = "邮箱")
     public String getEmail() {
         return email;
     }
@@ -52,7 +53,7 @@ public class User extends DataEntity<User> {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @ExcelField(value = "电话")
     public String getPhone() {
         return phone;
     }
