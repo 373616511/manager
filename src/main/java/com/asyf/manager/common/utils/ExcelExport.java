@@ -40,7 +40,6 @@ public class ExcelExport {
                 objects[1] = ef;
                 annotationList.add(objects);
             }
-
         }
         // Field sorting
         Collections.sort(annotationList, new Comparator<Object[]>() {
@@ -115,7 +114,7 @@ public class ExcelExport {
                 //  row.createCell(0).setCellValue(user.getId());
                 //row.createCell((short) 1).setCellValue(user.getName());
             }
-            // 第7步，将文件存到指定位置
+            // 第7步，将文件存到指定位置(方法传一个输出流，写到相应的输出流)
 
             File file = new File("D:/test");
             if (!file.exists()) {
