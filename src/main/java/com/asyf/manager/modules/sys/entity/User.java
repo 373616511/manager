@@ -36,7 +36,7 @@ public class User extends DataEntity<User> {
     public void setPassword(String password) {
         this.password = password;
     }
-    @ExcelField(value = "姓名")
+    @ExcelField(value = "姓名",sort = 30)
     public String getName() {
         return name;
     }
@@ -45,7 +45,7 @@ public class User extends DataEntity<User> {
         this.name = name;
     }
 
-    @ExcelField(value = "邮箱")
+    @ExcelField(value = "邮箱",sort = 20)
     public String getEmail() {
         return email;
     }
@@ -53,7 +53,7 @@ public class User extends DataEntity<User> {
     public void setEmail(String email) {
         this.email = email;
     }
-    @ExcelField(value = "电话")
+    @ExcelField(value = "电话",sort = 10)
     public String getPhone() {
         return phone;
     }

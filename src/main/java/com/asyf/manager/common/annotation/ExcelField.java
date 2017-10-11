@@ -13,4 +13,6 @@ import java.lang.annotation.Target;
 public @interface ExcelField {
 
     public String value() default "";
+
+    public int sort() default 0;
 }

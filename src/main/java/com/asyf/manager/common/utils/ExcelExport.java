@@ -11,53 +11,112 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/9/28.
  */
 public class ExcelExport {
 
-    //private List<>
+    //方法+注解
+    private List<Object[]> annotationList = new ArrayList();
+
+    //sheetname
+    private String sheetname;
+
     //构造函数--获得注解的方法和注解
-    public ExcelExport(Class cls) {
+    public ExcelExport(Class cls, String sheetname) {
+        this.sheetname = sheetname;
+        //获得所有的方法
         Method[] methods = cls.getDeclaredMethods();
         for (Method m : methods) {
             System.err.println(m.getName());
+            //获得方法上的注解
+            ExcelField ef = m.getAnnotation(ExcelField.class);
+            if (ef != null) {
+                System.err.println(ef);
+                Object[] objects = new Object[2];
+                objects[0] = m;
+                objects[1] = ef;
+                annotationList.add(objects);
+            }
+
         }
+        // Field sorting
+        Collections.sort(annotationList, new Comparator<Object[]>() {
+            @Override
+            public int compare(Object[] o1, Object[] o2) {
+                return new Integer(((ExcelField) o1[1]).sort()).compareTo(
+                        new Integer(((ExcelField) o2[1]).sort()));
+            }
+        });
     }
 
-    public void exportExcel(List<User> list) {
-        // 第一步，创建一个webbook，对应一个Excel文件
-        HSSFWorkbook wb = new HSSFWorkbook();
-        // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
-        HSSFSheet sheet = wb.createSheet("学生表一");
-        // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
-        HSSFRow row = sheet.createRow((int) 0);
-        // 第四步，创建单元格，并设置值表头 设置表头居中
-        HSSFCellStyle style = wb.createCellStyle();
-        style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
+    /**
+     * 获取注解的列名，遍历数据，每一条的数据通过反射调用注解的getter获得每列的数据，存储到cell
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        System.err.println("poi_test-----------------------------");
+        User user = new User();
+        user.setPhone("15335852588");
+        user.setName("name222");
+        user.setEmail("2326356@qq.com");
+        List<User> list = new ArrayList<User>();
+        list.add(user);
+        list.add(user);
+        list.add(user);
 
-        HSSFCell cell = row.createCell((short) 0);
-        cell.setCellValue("学号");
-        cell.setCellStyle(style);
-        cell = row.createCell((short) 1);
-        cell.setCellValue("姓名");
-        cell.setCellStyle(style);
-        // 第五步，写入实体数据 实际应用中这些数据从数据库得到，
+        ExcelExport excelExport = new ExcelExport(User.class, "sheetname");
+        excelExport.exportExcel(list);
 
-        for (int i = 0; i < list.size(); i++) {
-            row = sheet.createRow((int) i + 1);
-            User user = (User) list.get(i);
-            // 第四步，创建单元格，并设置值
-            row.createCell(0).setCellValue(user.getId());
-            row.createCell((short) 1).setCellValue(user.getName());
-        }
-        // 第六步，将文件存到指定位置
+        /*Class<User> cls = User.class;
+        Method m = cls.getMethod("getName", null);
+        Object o = m.invoke(user, null);
+        System.err.println(o);*/
+        System.err.println("poi_test-----------------------------");
+    }
+
+    public <E> void exportExcel(List<E> list) {
         try {
+            // 第一步，创建一个webbook，对应一个Excel文件
+            HSSFWorkbook wb = new HSSFWorkbook();
+            // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
+            HSSFSheet sheet = wb.createSheet(sheetname);
+            // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
+            HSSFRow row = sheet.createRow((int) 0);
+            // 第四步，创建单元格，并设置值表头 设置表头居中
+            HSSFCellStyle style = wb.createCellStyle();
+            style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
+
+            //第5步，设置表头
+            int a = 0;
+            for (Object[] objects : annotationList) {
+                HSSFCell cell = row.createCell(a++);
+                ExcelField ef = (ExcelField) objects[1];
+                String value = ef.value();
+                cell.setCellValue(value);
+                cell.setCellStyle(style);
+            }
+
+            // 第6步，写入实体数据 实际应用中这些数据从数据库得到
+            for (int i = 0; i < list.size(); i++) {
+                row = sheet.createRow((int) i + 1);
+                E e = list.get(i);
+                a = 0;
+                for (Object[] objects : annotationList) {
+                    Method m = (Method) objects[0];
+                    HSSFCell cell = row.createCell(a++);
+                    Object obj = m.invoke(e, null);
+                    cell.setCellValue(obj == null ? null : obj.toString());
+                }
+                //  row.createCell(0).setCellValue(user.getId());
+                //row.createCell((short) 1).setCellValue(user.getName());
+            }
+            // 第7步，将文件存到指定位置
+
             File file = new File("D:/test");
             if (!file.exists()) {
                 file.mkdir();
@@ -70,20 +129,4 @@ public class ExcelExport {
         }
     }
 
-    /**
-     * 获取注解的列名，遍历数据，每一条的数据通过反射调用注解的getter获得每列的数据，存储到cell
-     *
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-        System.err.println("poi_test-----------------------------");
-        User user = new User();
-        user.setId("s");
-        user.setName("name");
-        List<User> list = new ArrayList<User>();
-        ExcelExport excelExport = new ExcelExport(User.class);
-
-        System.err.println("poi_test-----------------------------");
-    }
 }
