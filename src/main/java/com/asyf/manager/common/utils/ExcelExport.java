@@ -4,6 +4,7 @@ import com.asyf.manager.common.annotation.ExcelField;
 import com.asyf.manager.modules.sys.entity.User;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.formula.functions.T;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -86,10 +87,12 @@ public class ExcelExport {
             HSSFSheet sheet = wb.createSheet(sheetname);
             // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
             HSSFRow row = sheet.createRow((int) 0);
+            sheet.setColumnWidth(0,50*256);
             // 第四步，创建单元格，并设置值表头 设置表头居中
             HSSFCellStyle style = wb.createCellStyle();
             style.setWrapText(true);//自动换行
-            style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
+            style.setAlignment(HorizontalAlignment.RIGHT);
+            //style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
             //第5步，设置表头
             int a = 0;
