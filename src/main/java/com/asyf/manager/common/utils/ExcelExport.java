@@ -61,7 +61,7 @@ public class ExcelExport {
         System.err.println("poi_test-----------------------------");
         User user = new User();
         user.setPhone("15335852588");
-        user.setName("name222");
+        user.setName("name\r\n222");
         user.setEmail("2326356@qq.com");
         List<User> list = new ArrayList<User>();
         list.add(user);
@@ -88,6 +88,7 @@ public class ExcelExport {
             HSSFRow row = sheet.createRow((int) 0);
             // 第四步，创建单元格，并设置值表头 设置表头居中
             HSSFCellStyle style = wb.createCellStyle();
+            style.setWrapText(true);//自动换行
             style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
             //第5步，设置表头
@@ -109,7 +110,11 @@ public class ExcelExport {
                     Method m = (Method) objects[0];
                     HSSFCell cell = row.createCell(a++);
                     Object obj = m.invoke(e, null);
-                    cell.setCellValue(obj == null ? null : obj.toString());
+                    cell.setCellValue(new HSSFRichTextString(obj == null ? null : obj.toString()));
+                    //"name\r\n222"
+                    cell.setCellStyle(style);
+                    //cell.setCellValue(new HSSFRichTextString("name\r\n222"));
+
                 }
                 //  row.createCell(0).setCellValue(user.getId());
                 //row.createCell((short) 1).setCellValue(user.getName());
