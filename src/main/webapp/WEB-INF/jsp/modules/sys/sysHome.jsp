@@ -10,6 +10,6 @@
     </script>
 </head>
 <body>
-
+<%@include file="/WEB-INF/jsp/include/menu.jsp" %>
 </body>
 </html>

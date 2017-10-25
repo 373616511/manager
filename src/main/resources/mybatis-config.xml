@@ -9,5 +9,6 @@
     <typeAliases>
         <typeAlias type="com.asyf.manager.common.entity.Page" alias="page"/>
         <typeAlias type="com.asyf.manager.modules.sys.entity.User" alias="user"/>
+        <typeAlias type="com.asyf.manager.modules.sys.entity.Menu" alias="menu"/>
     </typeAliases>
 </configuration>

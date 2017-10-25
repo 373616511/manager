@@ -13,7 +13,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="${ctx}/user/list">用户管理</a></li>
-                        <li><a href="#">EJB</a></li>
+                        <li><a href="${ctx}/sys/menu/list">菜单管理</a></li>
                         <li><a href="#">Jasper Report</a></li>
                     </ul>
                 </li>
