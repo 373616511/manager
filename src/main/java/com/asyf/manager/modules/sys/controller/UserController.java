@@ -45,7 +45,7 @@ public class UserController {
         //model.addAttribute("user", user);
         //String a = null;
         //System.err.print(a.toString());
-        return "modules/sys/sysIndex";
+        return "modules/sys/sysHome";
     }
 
     @RequestMapping(value = "/list")

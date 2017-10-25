@@ -23,11 +23,11 @@ public class SysInterceptor implements HandlerInterceptor {
         System.out.println("preHandle---" + request.getRequestURI());
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        if (user == null) {
+        /*if (user == null) {
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/");
-        }
-        return false;
+        }*/
+        return true;
     }
 
     //进入Handler方法之后，返回modelAndView之前执行

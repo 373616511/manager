@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/include/menu.jsp" %>
 <div class="container-fluid">
     <ul id="myTab" class="nav nav-tabs">
         <li class="active">
