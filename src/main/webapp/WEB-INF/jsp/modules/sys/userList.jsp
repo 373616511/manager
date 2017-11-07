@@ -63,9 +63,10 @@
     function search() {
         //alert("ok");
         $('#test-table').bootstrapTable('refreshOptions', {pageNumber: 1});
-        $('#test-table').bootstrapTable('refresh', {
+        //两个方法都能刷新页面，不要写两次
+        /*$('#test-table').bootstrapTable('refresh', {
             silent: true
-        });
+        });*/
         return false;
     }
 
