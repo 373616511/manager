@@ -240,6 +240,12 @@
             <version>2.8.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.github.abel533/ECharts -->
+        <dependency>
+            <groupId>com.github.abel533</groupId>
+            <artifactId>ECharts</artifactId>
+            <version>3.0.0.1</version>
+        </dependency>
         <!-- shiro start -->
         <!-- shiro核心包 -->
         <dependency>
