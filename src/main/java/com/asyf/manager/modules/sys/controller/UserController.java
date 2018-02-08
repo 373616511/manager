@@ -6,6 +6,8 @@ import com.asyf.manager.modules.sys.entity.User;
 import com.asyf.manager.modules.sys.service.UserService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,11 +68,14 @@ public class UserController {
         //model.addAttribute("user", user);
         //String a = null;
         //System.err.print(a.toString());
-        return "modules/sys/sysHome";
+        // return "modules/sys/sysHome";
+        return main();
     }
 
+    @RequiresRoles("admin")
     @RequestMapping(value = "main")
     public String main() {
+        logger.info("main执行*****************");
         return "modules/sys/sysHome";
     }
 

@@ -5,6 +5,13 @@
          id="WebApp_ID" version="3.0">
     <display-name>springmvcMaven</display-name>
 
+    <error-page>
+
+        <exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>
+
+        <location>/error.jsp</location>
+
+    </error-page>
     <!-- welcome page -->
     <welcome-file-list>
         <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
