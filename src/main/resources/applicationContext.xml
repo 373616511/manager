@@ -77,4 +77,6 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- shiro -->
+    <import resource="classpath:springmvc-shiro.xml"/>
 </beans>

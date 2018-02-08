@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>登录页面</title>
-    <link type="text/css" rel="stylesheet" href="static/css/sign.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/sign.css">
     <script type="text/javascript">
         $(function () {
             //alert('${ctx}');
@@ -32,19 +32,19 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" action="user/login" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+    <form class="form-signin" action="/user/login" method="post">
+        <h2 class="form-signin-heading">Please sign in2</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="inputEmail" class="form-control" placeholder="用户名"  autofocus>
+        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="用户名"  autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" >
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" >
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
         <div style="text-align: center;">
-            <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+            <input class="btn btn-lg btn-primary" type="submit" value="提交"></input>
             <%--<button class="btn btn-lg btn-primary" type="button" id="register">Register</button>--%>
         </div>
     </form>

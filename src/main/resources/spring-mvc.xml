@@ -61,15 +61,15 @@
     <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
 
     <!-- 拦截器 -->
-    <mvc:interceptors>
-        <!-- 多个拦截器，顺序执行 -->
+    <!--<mvc:interceptors>
+        &lt;!&ndash; 多个拦截器，顺序执行 &ndash;&gt;
         <mvc:interceptor>
-            <!-- /**表示所有url包括子url路径 -->
+            &lt;!&ndash; /**表示所有url包括子url路径 &ndash;&gt;
             <mvc:mapping path="/**"/>
-            <!-- 不拦截静态资源 -->
+            &lt;!&ndash; 不拦截静态资源 &ndash;&gt;
             <mvc:exclude-mapping path="/static/**"/>
             <bean class="com.asyf.manager.common.listener.SysInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
 </beans>    

@@ -11,5 +11,6 @@
 </head>
 <body>
 <%@include file="/WEB-INF/jsp/include/menu.jsp" %>
+测试页面
 </body>
 </html>
