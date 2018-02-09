@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +57,8 @@ public class UserController {
         logger.info("登录POST" + new Date());
         Subject subject = SecurityUtils.getSubject();
         MyRealm.Principal principal = (MyRealm.Principal) subject.getPrincipal();
+        subject.getSession().setAttribute("a","ssss");
+        HttpSession session = request.getSession();
         if (principal != null) {
             logger.info(principal.getUsername());
         }
@@ -69,7 +72,7 @@ public class UserController {
         //String a = null;
         //System.err.print(a.toString());
         // return "modules/sys/sysHome";
-        return main();
+        return "redirect: /user/main";
     }
 
     @RequiresRoles("admin")

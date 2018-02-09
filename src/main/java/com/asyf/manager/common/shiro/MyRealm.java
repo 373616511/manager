@@ -52,7 +52,7 @@ public class MyRealm extends AuthorizingRealm {
         param.put("password", password);
         // 登录验证
         User user = new User();
-        if (user != null) {
+        if (user != null && "zhangsan".equals(username)) {
             System.out.println("doGetAuthenticationInfo---user:" + user.toString());
             Principal principal = new Principal(username);
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(principal, password,
@@ -69,9 +69,9 @@ public class MyRealm extends AuthorizingRealm {
 
     /**
      * 为当前登录的Subject授予角色和权限
-     *
-     *  经测试:本例中该方法的调用时机为需授权资源被访问时
-     *  经测试:并且每次访问需授权资源时都会执行该方法中的逻辑,这表明本例中默认并未启用AuthorizationCache
+     * <p>
+     * 经测试:本例中该方法的调用时机为需授权资源被访问时
+     * 经测试:并且每次访问需授权资源时都会执行该方法中的逻辑,这表明本例中默认并未启用AuthorizationCache
      * 个人感觉若使用了Spring3.1开始提供的ConcurrentMapCache支持,
      * 则可灵活决定是否启用AuthorizationCache
      * 比如说这里从数据库获取权限信息时,先去访问Spring3.1提供的缓存,而不使用Shior提供的AuthorizationCache
